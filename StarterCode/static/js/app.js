@@ -16,10 +16,27 @@ function SampleNames(){
 SampleNames();
 
 function ChangedOptions(sample){
-  updatePie(sample);
+  updateBar(sample);
   updateBubbleChart(sample);
   updatedMetadata(sample);
 };
+
+function updateBar(sample){
+  var sampleURL = '/samples/${sample}'
+  Plotly.d3.json(sampleURL)
+  if (error) return console.log(error);
+        var labels = []
+        var values = []
+        var hovers = []
+        for(i=0; i<10; i++){
+            var label = response[0].otu_ids[i];
+            labels.push(label);
+            var value = response[1].sample_values[i];
+            values.push(value);
+            var hover = response[2][label - 1];
+            hovers.push(hover);
+        };
+}
 
 
 optionChanged("970");
