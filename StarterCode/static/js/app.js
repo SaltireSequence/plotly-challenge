@@ -59,5 +59,31 @@ function updateBar(sample){
       });
 };
 
+function updateBubble(sample) {
+    var sampleURL = `/samples/${sample}`
+    Plotly.d3.json(sampleURL,function(error,response){
+        if (error) return console.log(error);
+        var otuIDs = response[0].otu_ids;
+        var sampleValues = response[1].sample_values
+        var otuDescriptions = [];
+        for(i=0; i<otuIDs.length; i++) {
+            otuDescriptions.push(response[2][otuIDs[i] - 1]);
+        };
+        var trace = {
+             x: otuIDs,
+             y: sampleValues,
+             mode: 'markers',
+             type: 'scatter',
+             marker: {
+                 size: sampleValues,
+                 color: otuIDs,
+                 colorscale: "Rainbow"
+             },
+             text: otuDescriptions,
+           };
+         var data = [trace]
+         Plotly.newPlot("bubbleChart", data)
+      });
+};
 
 optionChanged("970");
