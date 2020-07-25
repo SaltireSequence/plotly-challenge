@@ -35,8 +35,29 @@ function updateBar(sample){
             values.push(value);
             var hover = response[2][label - 1];
             hovers.push(hover);
-        };
-}
+          };
+          var trace = {
+              values: values,
+              labels: labels,
+              type: "bar",
+              text: hovers,
+              hoverinfo: "label+text+value+percent",
+              textinfo: "percent"
+          };
+          var data = [trace]
+          var layout = {
+              margin: {
+                  l: 10,
+                  r: 10,
+                  b: 10,
+                  t: 10,
+                  pad: 4
+              }
+          }
+
+          Plotly.newPlot("pieChart", data, layout)
+      });
+};
 
 
 optionChanged("970");
