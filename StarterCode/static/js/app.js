@@ -12,3 +12,14 @@ function SampleNames(){
           });
       });
   };
+
+SampleNames();
+
+function ChangedOptions(sample){
+  updatePie(sample);
+  updateBubbleChart(sample);
+  updatedMetadata(sample);
+};
+
+
+optionChanged("970");
