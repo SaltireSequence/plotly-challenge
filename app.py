@@ -11,3 +11,9 @@ from flask import (
     jsonify,
     request,
     redirect)
+
+Base = automap_base()
+Base.prepare(engine, reflect=True)
+Sample = Base.classes.samples
+OTU = Base.classes.otu
+Metadata = Base.classes.samples_metadata

@@ -22,7 +22,7 @@ function ChangedOptions(sample){
 };
 
 function updateBar(sample){
-  var sampleURL = '/samples/${sample}'
+  var sampleURL = `/samples/${sample}`
   Plotly.d3.json(sampleURL)
   if (error) return console.log(error);
         var labels = []
