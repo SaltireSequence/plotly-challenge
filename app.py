@@ -14,7 +14,7 @@ from flask import (
 
 app = Flask(__name__)
 
-engine = create_engine("sqlite:///db/bellybutton.sqlite", echo=False)
+engine = create_engine("sqlite:///db/belly_button_biodiversity.sqlite", echo=False)
 
 Base = automap_base()
 Base.prepare(engine, reflect=True)
