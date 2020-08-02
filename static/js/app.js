@@ -54,7 +54,7 @@ function renderPlots(id) {
     });
 }
 
-function displayData(id){
+function displayData(id) {
     d3.json("samples.json").then((data1)=> {
         var metadata = data.metadata;
         var result = metadata.filter(meta => meta.id.toString() === id)[0];
@@ -64,7 +64,7 @@ function displayData(id){
           Object.entries(result).forEach((key) => {
               demographicInfo.append("h5").text(key[0].toUpperCase() + ": " + key[1] + "\n");
           });
-      });
+    });
 }
 function optionChanged(id) {
     renderPlots(id);
@@ -78,8 +78,8 @@ function init() {
           dropdown.append("option").text(name).property("value");
       });
 
-      getPlots(data1.names[0]);
-      getDemoInfo(data1.names[0]);
+      renderPlots(data1.names[0]);
+      displayData(data1.names[0]);
   });
 }
 
