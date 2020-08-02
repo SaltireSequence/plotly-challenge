@@ -74,8 +74,9 @@ function optionChanged(id) {
 function init() {
     var dropdownMenu = d3.select("#selDataset");
     d3.json("samples.json").then((data1)=> {
+
       data.names.forEach(function(name) {
-          dropdown.append("option").text(name).property("value");
+          dropdownMenu.append("option").text(name).property("value");
       });
 
       renderPlots(data1.names[0]);
