@@ -78,8 +78,8 @@ function init() {
           dropdown.append("option").text(name).property("value");
       });
 
-      getPlots(data.names[0]);
-      getDemoInfo(data.names[0]);
+      getPlots(data1.names[0]);
+      getDemoInfo(data1.names[0]);
   });
 }
 
