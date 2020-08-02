@@ -1,4 +1,4 @@
-function renderPlots(id){
+function renderPlots(id) {
     d3.json("samples.json").then (sampledata =>{
       var ids = sampledata.samples[0].otu_ids;
       var datasamples = sampledata.samples[0].sample_values.slice(0,10).reverse();
@@ -8,7 +8,7 @@ function renderPlots(id){
       // var datalabels =  sampledata.samples[0].otu_labels.slice(0,10);
       var trace1 = {
         x: datasamples,
-        y: OTU_id,
+        y: otu_ids,
         marker: {
         color: 'blue'},
         type:"bar",
