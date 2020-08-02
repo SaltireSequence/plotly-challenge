@@ -5,15 +5,15 @@ function renderPlots(id) {
       var datalabels =  sampledata.samples[0].otu_labels.slice(0,10);
       var otu_top = ( sampledata.samples[0].otu_ids.slice(0, 10)).reverse();
       var otu_ids = otu_top.map(d => "OTU " + d);
-      // var datalabels =  sampledata.samples[0].otu_labels.slice(0,10);
+      var datalabels =  sampledata.samples[0].otu_labels.slice(0,10);
       var trace1 = {
         x: datasamples,
         y: otu_ids,
+        text: datalabels,
         marker: {
         color: 'blue'},
         type:"bar",
         orientation: "h",
-        text: datalabels,
       };
       var data1 = [trace1];
 
