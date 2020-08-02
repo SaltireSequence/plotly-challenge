@@ -7,28 +7,28 @@ function renderPlots(id) {
       var otu_ids = otu_top.map(d => "OTU " + d);
       var datalabels =  sampledata.samples[0].otu_labels.slice(0,10);
       var trace1 = {
-        x: datasamples,
-        y: otu_ids,
-        text: datalabels,
-        marker: {
-        color: 'blue'},
-        type:"bar",
-        orientation: "h",
-      };
-      var data1 = [trace1];
+          x: datasamples,
+          y: otu_ids,
+          text: datalabels,
+          marker: {
+          color: 'blue'},
+          type:"bar",
+          orientation: "h",
+        };
+        var data1 = [trace1];
 
-      var bar_layout = {
-        title: "Top 10 OTU",
-        yaxis:{
-          tickmode:"linear",
-        },
-        margin: {
-          l: 100,
-          r: 100,
-          t: 100,
-          b: 30
-        }
-      };
+        var bar_layout = {
+            title: "Top 10 OTU",
+            yaxis:{
+                tickmode:"linear",
+            },
+            margin: {
+              l: 100,
+              r: 100,
+              t: 100,
+              b: 30
+            }
+        };
 
     Plotly.newPlot("bar", data1, bar_layout);
       var trace2 = {
@@ -49,7 +49,7 @@ function renderPlots(id) {
       };
 
       var data2 = [trace2];
-    Plotly.newPlot("bubble", data2, layout_2);
+    Plotly.newPlot("bubble", data2, bubble_layout);
 
     });
 }
