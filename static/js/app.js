@@ -17,7 +17,7 @@ function renderPlots(id){
       };
       var data1 = [trace1];
 
-      var plotLayout1 = {
+      var bar_layout = {
         title: "Top 10 OTU",
         yaxis:{
           tickmode:"linear",
@@ -30,7 +30,7 @@ function renderPlots(id){
         }
       };
 
-    Plotly.newPlot("bar", data1, plotLayout1);
+    Plotly.newPlot("bar", data1, bar_layout);
       var trace2 = {
           x: sampledata.samples[0].otu_ids,
           y: sampledata.samples[0].sample_values,
@@ -42,10 +42,45 @@ function renderPlots(id){
           text:  sampledata.samples[0].otu_labels
 
       };
-      var plotLayout2 = {
+      var bubble_layout = {
           xaxis:{title: "OTU ID"},
           height: 600,
           width: 1000
       };
 
-      var data1 = [trace2];
+      var data2 = [trace2];
+    Plotly.newPlot("bubble", data2, layout_2);
+
+    });
+}
+
+function displayData(id){
+    d3.json("samples.json").then((data1)=> {
+        var metadata = data.metadata;
+        var result = metadata.filter(meta => meta.id.toString() === id)[0];
+        var demographicInfo = d3.select("#sample-metadata");
+        demographicInfo.html("");
+
+          Object.entries(result).forEach((key) => {
+              demographicInfo.append("h5").text(key[0].toUpperCase() + ": " + key[1] + "\n");
+          });
+      });
+}
+function optionChanged(id) {
+    renderPlots(id);
+    displayData(id);
+}
+
+function init() {
+    var dropdownMenu = d3.select("#selDataset");
+    d3.json("samples.json").then((data1)=> {
+      data.names.forEach(function(name) {
+          dropdown.append("option").text(name).property("value");
+      });
+
+      getPlots(data.names[0]);
+      getDemoInfo(data.names[0]);
+  });
+}
+
+init();
