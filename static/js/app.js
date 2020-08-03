@@ -52,9 +52,38 @@ function renderPlots(id) {
         var data2 = [trace2];
 
     Plotly.newPlot("bubble", data2, bubble_layout);
+    // var gauge_data = [
+    //     {
+    //         domain: { x: [0, 1], y: [0, 1] },
+    //         value: 270,
+    //         title: { text: "<b>Belly Button Washing Frequency</b> <br> Scrubs per Week"},
+    //         type: "indicator",
+    //         mode: "gauge+number",
+    //         gauge: {
+    //             axis: { range: [null, 9] } ,
+    //             steps: [
+    //                 { range: [0, 1], color: "#ebeedc" },
+    //                 { range: [1, 2], color: "#d7ebb9"},
+    //                 { range: [2, 3], color: "#b6dfa8" },
+    //                 { range: [3, 4], color:  "#a1db9a" },
+    //                 { range: [4, 5], color: "#8dd59f" },
+    //                 { range: [5, 6], color:  "#7ecdae" },
+    //                 { range: [6, 7], color:  "#62c19a" },
+    //                 { range: [7, 8], color:  "#3dbd88" },
+    //                 { range: [8, 9], color:  "#25a16e" },
+    //             ]}
+    //     }
+    // ];
+    //
+    // var gauge_layout = {
+    //     width: 600, height: 300, margin: { t: 0, b: 0 },
+    //  };
+    // Plotly.newPlot("gauge", gauge_data, gauge_layout);
 
     });
 }
+
+
 
 function getData(id) {
     d3.json("samples.json").then((data1)=> {
@@ -76,6 +105,7 @@ function eventChange(id) {
 function init() {
     var dropdown = d3.select("#selDataset");
     d3.json("samples.json").then((data1)=> {
+        console.log(data1)
         data1.names.forEach(function(name) {
             dropdown.append("option").text(name).property("value");
         });
