@@ -55,15 +55,8 @@ function renderPlots(id) {
 
     });
 }
-    var gauge_layout = {
-        width: 600, height: 500, margin: { t: 0, b: 0 },
-     };
 
-    Plotly.newPlot('gauge', gauge_layout )
-
-
-
-function getDemoInfo(id) {
+function getData(id) {
     d3.json("samples.json").then((data1)=> {
         var metadata = data1.metadata;
         var result = metadata.filter(meta => meta.id.toString() === id)[0];
@@ -75,9 +68,9 @@ function getDemoInfo(id) {
     });
 }
 
-function optionChanged(id) {
+function eventChange(id) {
     renderPlots(id);
-    getDemoInfo(id);
+    getData(id);
 }
 
 function init() {
@@ -87,7 +80,7 @@ function init() {
             dropdown.append("option").text(name).property("value");
         });
         renderPlots(data1.names[0]);
-        getDemoInfo(data1.names[0]);
+        getData(data1.names[0]);
     });
 }
 
