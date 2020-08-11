@@ -52,8 +52,8 @@ function show_data(value) {
 
         Plotly.newPlot("bar", plot_data);
 
-// trace for ubble_chart
-        var trace2 = {
+// trace for bubble_chart
+        var bubble_trace = {
             x: otu_ids,
             y: dataset_samples,
             mode: 'markers',
@@ -62,7 +62,7 @@ function show_data(value) {
                 size : dataset_samples
             }
         };
-        var bubble_data =[trace2];
+        var bubble_data =[bubble_trace];
         Plotly.newPlot('bubble',bubble_data)
         //gauge chart
         var wfreq = input_data.wfreq
@@ -98,9 +98,9 @@ function show_data(value) {
     });
 };
 
-// showing initial data
+// present initial data
 function init(){
-    show_data(0);
+    show_data(20);
 }
 
 //showing selected data
