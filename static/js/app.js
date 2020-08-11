@@ -1,4 +1,4 @@
-//select the dropdown value
+// function to select data from drop down
 var selectDropdown = d3.select("#selDataset");
 function addOptions() {
     d3.json("samples.json").then(function(data) {
@@ -8,24 +8,21 @@ function addOptions() {
     });
 }
 addOptions();
-// function for showing data. It will be used for initial function and optionChange function later.
+// This function will present data and laterally optionChange
 function show_data(value) {
     d3.json("samples.json").then((importedData) => {
-       // console.log(importedData);
 
         var data = importedData.samples[value];
-        // console.log(data);
-
         var dataset_samples =data.sample_values;
         var otu_ids = data.otu_ids;
-        // collect top 10 otu ids with samples
+        // top 10 OTU dataset values
         var top10_samples = dataset_samples.slice(0,10);
         var top10_otu_ids = otu_ids.slice(0,10);
         top10_otu_ids_str = top10_otu_ids.map(String)
         for (i = 0; i < 10; i++)
             top10_otu_ids_str[i] = "OTU: " + top10_otu_ids_str[i]
-        // console.log(top10_samples);
-        // console.log(top10_otu_ids_str);
+
+
         var input_data = importedData.metadata[value];
         var meta  =  d3.select("#sample-metadata");
         meta.html("");
@@ -37,8 +34,8 @@ function show_data(value) {
         meta.append("li").text( `bbtype: ${input_data.bbtype}`);
         meta.append("li").text( `wfreq: ${input_data.wfreq}`);
 
-        // bar chart
-        var trace1 ={
+// trace for bar chart
+        var bar_trace ={
         x: top10_samples,
         y: top10_otu_ids_str,
         text: top10_otu_ids_str,
@@ -51,11 +48,11 @@ function show_data(value) {
             }]
         };
 
-        var plot_data = [trace1];
+        var plot_data = [bar_trace];
 
         Plotly.newPlot("bar", plot_data);
 
-        //bubble chart
+// trace for ubble_chart
         var trace2 = {
             x: otu_ids,
             y: dataset_samples,
